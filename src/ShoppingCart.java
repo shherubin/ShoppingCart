@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class ShoppingCart {
     public static void main(String[] args) {
-
         Scanner stdin = new Scanner(System.in);
         String input = "";
         boolean moreItems = true;
@@ -26,52 +25,111 @@ public class ShoppingCart {
         prices[4] = 399.99;
         prices[5] = 499.99;
 
-        String[] cart = new String[10];
+        String[] cart = new String[10]; // all items are null right now
 
+        //This is an example of how to print out everything in an array
         for(int i = 0; i < list.length; i++){
             System.out.println(list[i]);
         }
-        for(int c = 0; c < cart.length; c++) {
+
+        /**
+         * Note on comparison checks:
+         *  while(addFlag == true) { ...code to execute }
+         *  OR
+         *  while(addFlag) { ...code to execute }
+         *
+         *  while(addFlag == false) { ...code to execute }
+         *  OR
+         *  while(!addFlag) { ...code to execute }
+         * */
+
+        boolean addFlag = true;
+
+        //TODO: Currently only adds 1 item. Solve how to add multiple items to the cart
+        while(addFlag == true){
             System.out.println("Please enter a item number to add it to your cart.");
             input = stdin.nextLine();
             int itemIndex = Integer.parseInt(input);
-            cart[0] = list[itemIndex - 1];
-            System.out.println("You've chosen " + cart[0]);
-            System.out.println("Would you like to ");
-            input = stdin.nextLine();
-            if (input.equalsIgnoreCase("yes")) {
-                System.out.println("Please select another item.");
-                input = stdin.nextLine();
-                itemIndex = Integer.parseInt(input);
-                cart[1] = list[itemIndex - 1];
-                System.out.println("You have chosen " + cart[1]);
-                for (int i = 0; i < list.length; i++) {
-                    if (cart[i] != null) {
-                        System.out.println("Current cart has " + cart[i]);
-                    }
-                }
-                System.out.println("Would you like to checkout?");
-                input = stdin.nextLine();
-                if (input.equalsIgnoreCase("yes")) {
-                    System.out.println("Would you like to delete any items?");
-                    input = stdin.nextLine();
-                    if (input.equalsIgnoreCase("yes"))
-                        for (int i = 0; i < list.length; i++) {
-                            if (cart[i] != null) {
-                                System.out.println("Current cart has " + cart[i]);
-                                System.out.println("Pick an item to delete");
-                                input = stdin.nextLine();
-
-
-                } else if (input.equalsIgnoreCase("no")) ;
-                System.out.println("Would you like to delete an item from your cart?");
-                input = stdin.nextLine();
-                if (input.equalsIgnoreCase("yes")) ;
-                System.out.println("Please pick an item to delete.");
-                System.out.println(cart[c]);
-
-
+            for (int i = 0; i < cart.length; i++){
+                if(cart[i] == null){ // this looks at the spot if the spot is empty
+                    cart[i] = list[itemIndex - 1]; // since empty then we'll add the item there
+                    break; //stop the for loop since we've found the empty space
+                } // else we don't care because we assume the space is full (for now...)
             }
+            System.out.println("You've added " + list[itemIndex - 1] + " to your cart.\n");
+            for (int i = 0; i < list.length; i++) {
+                if (cart[i] != null) {
+                    System.out.println("Current cart has " + cart[i]);
+                }
+            }
+
+            System.out.println("\nWould you like to add more items to the cart?");
+            String addResponse = stdin.nextLine();
+            if(addResponse.equalsIgnoreCase("no")){
+                addFlag = false;
+            } else if (addResponse.equalsIgnoreCase("yes")){
+                System.out.println("Awesome! You have a lot of money. ");
+            }
+        }
+//
+//        boolean deleteFlag = true;
+//
+//        while(deleteFlag == true){
+//            System.out.println("Please enter a item number to delete it from your cart.");
+//            input = stdin.nextLine();
+//            int itemIndex = Integer.parseInt(input);
+//            cart[0] = list[itemIndex - 1];
+//            System.out.println("You've removed " + list[itemIndex - 1] + " from your cart.");
+//            for (int i = 0; i < list.length; i++) {
+//                if (cart[i] != null) {
+//                    System.out.println("Current cart has " + cart[i]);
+//                }
+//            }
+//            deleteFlag = false;
+//        }
+
+
+//        for(int c = 0; c < cart.length; c++) {
+//            System.out.println("Please enter a item number to add it to your cart.");
+//            input = stdin.nextLine();
+//            int itemIndex = Integer.parseInt(input);
+//            cart[0] = list[itemIndex - 1];
+//            System.out.println("You've chosen " + cart[0]);
+//            System.out.println("Would you like to ");
+//            input = stdin.nextLine();
+//            if (input.equalsIgnoreCase("yes")) {
+//                System.out.println("Please select another item.");
+//                input = stdin.nextLine();
+//                itemIndex = Integer.parseInt(input);
+//                cart[1] = list[itemIndex - 1];
+//                System.out.println("You have chosen " + cart[1]);
+//                for (int i = 0; i < list.length; i++) {
+//                    if (cart[i] != null) {
+//                        System.out.println("Current cart has " + cart[i]);
+//                    }
+//                }
+//                System.out.println("Would you like to checkout?");
+//                input = stdin.nextLine();
+//                if (input.equalsIgnoreCase("yes")) {
+//                    System.out.println("Would you like to delete any items?");
+//                    input = stdin.nextLine();
+//                    if (input.equalsIgnoreCase("yes"))
+//                        for (int i = 0; i < list.length; i++) {
+//                            if (cart[i] != null) {
+//                                System.out.println("Current cart has " + cart[i]);
+//                                System.out.println("Pick an item to delete");
+//                                input = stdin.nextLine();
+//
+//
+//                } else if (input.equalsIgnoreCase("no")) ;
+//                System.out.println("Would you like to delete an item from your cart?");
+//                input = stdin.nextLine();
+//                if (input.equalsIgnoreCase("yes")) ;
+//                System.out.println("Please pick an item to delete.");
+//                System.out.println(cart[c]);
+//
+//
+//            }
 
 //        System.out.println(list [0] + list[1] + list[2] + list[3] + list[4] + list[5]);
 //        System.out.println("Please enter a item number to add it to your cart.");
@@ -121,7 +179,7 @@ public class ShoppingCart {
 //            System.out.println("Looks like all your items are in stock!");*/
 //              }
 //        }
-        }
+
     }
 }
 
