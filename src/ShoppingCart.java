@@ -69,24 +69,27 @@ public class ShoppingCart {
                 addFlag = false;
             } else if (addResponse.equalsIgnoreCase("yes")){
                 System.out.println("Awesome! You have a lot of money. ");
+                addFlag = true;
             }
         }
-//
-//        boolean deleteFlag = true;
-//
-//        while(deleteFlag == true){
-//            System.out.println("Please enter a item number to delete it from your cart.");
-//            input = stdin.nextLine();
-//            int itemIndex = Integer.parseInt(input);
-//            cart[0] = list[itemIndex - 1];
-//            System.out.println("You've removed " + list[itemIndex - 1] + " from your cart.");
-//            for (int i = 0; i < list.length; i++) {
-//                if (cart[i] != null) {
-//                    System.out.println("Current cart has " + cart[i]);
-//                }
-//            }
-//            deleteFlag = false;
-//        }
+
+        boolean deleteFlag = true;
+
+        while(deleteFlag == true){
+            System.out.println("Please enter a item number to delete it from your cart.");
+            input = stdin.nextLine();
+            int index = Integer.parseInt(input);
+            cart[0] = list[index - 1];
+            System.out.println("This is " + cart[0]);
+            System.out.println("You've removed " + list[index - 1] + " from your cart.");
+
+            for (int i = index; i < cart.length; i++) {
+
+                    System.out.println("Current cart has " + cart[i]);
+
+                }
+            deleteFlag = false;
+        }
 
 
 //        for(int c = 0; c < cart.length; c++) {
