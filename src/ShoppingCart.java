@@ -9,23 +9,13 @@ public class ShoppingCart {
 
         String list[] = {"1.Nintendo Switch - $299.99 ", "2.Xbox Series X - $499.99 ", "3.PS5 - $499.99 ", "4.Samsung Q60A TV - $440.00 ", "5.Apple Watch - #399.99 ", "6.GTX3070 - $499.99 "};
 
-        String[] items = new String[6];
-        items[0] = "Nintendo Switch";
-        items[1] = "Xbox Series X";
-        items[2] = "PS5";
-        items[3] = "Samsung Q60A TV";
-        items[4] = "Apple Watch";
-        items[5] = "GTX 3070";
-
-        double[] prices = new double[6];
-        prices[0] = 299.99;
-        prices[1] = 499.99;
-        prices[2] = 499.99;
-        prices[3] = 440.00;
-        prices[4] = 399.99;
-        prices[5] = 499.99;
-
         String[] cart = new String[10]; // all items are null right now
+        Item nintendoSwitch = new Item(1, "Nintendo Switch", 299.99);
+        //TODO: I want you to create an Item Object (What I did online 13) for the rest of the list on line 10
+        //TODO: I want you to create an Item Array then and put every item from the list into the Item Array
+        /**
+         * Note: Arrays are ObjectType [] variableName = new ObjectType[size];
+         */
 
         //This is an example of how to print out everything in an array
         for(int i = 0; i < list.length; i++){
@@ -45,7 +35,6 @@ public class ShoppingCart {
 
         boolean addFlag = true;
 
-        //TODO: Currently only adds 1 item. Solve how to add multiple items to the cart
         while(addFlag == true){
             System.out.println("Please enter a item number to add it to your cart.");
             input = stdin.nextLine();
@@ -78,16 +67,17 @@ public class ShoppingCart {
         while(deleteFlag == true){
             System.out.println("Please enter a item number to delete it from your cart.");
             input = stdin.nextLine();
-            int index = Integer.parseInt(input);
-            cart[0] = list[index - 1];
-            System.out.println("This is " + cart[0]);
-            System.out.println("You've removed " + list[index - 1] + " from your cart.");
-
-            for (int i = index; i < cart.length; i++) {
-
-                    System.out.println("Current cart has " + cart[i]);
-
+            int itemIndex = Integer.parseInt(input) - 1; //this is index of the item they want to remove from the cart
+            System.out.println("You've removed " + cart[itemIndex] + " from your cart."); //getting a specific item from the cart is done with this
+//            cart[0] = list[index - 1]; This assigns the item from the list to cart[0] which is incorrect we don't want to "replace" that item
+            cart[itemIndex] = null; // This removes the "item" currently at the index and sets it to null
+            for(int i = 0; i < cart.length; i++){
+                if(cart[i] != null){
+                    System.out.println("Cart is now: " + cart[i]);
                 }
+            }
+
+            //TODO: Edit this to do multiple deletes
             deleteFlag = false;
         }
 
