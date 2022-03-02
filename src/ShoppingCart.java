@@ -26,27 +26,39 @@ public class ShoppingCart {
         itemShelf.add(appleWatch);
         itemShelf.add(gtx3070);
 
-
-        boolean addFlag = true;
         for (int i = 0; i < itemShelf.size(); i++) {
-            System.out.println(itemShelf.get(i).toString());
-        }
-
-
-        //add logic
-        System.out.println("Please select the quantity of items you would like to add to your cart.");
-//        String[] quantityToCart = new String[stdin.nextInt()];
-//        stdin.nextLine();
-//        for (int i = 0; i < quantityToCart.length; i++) {
-//            quantityToCart[i] = stdin.nextLine();
+            System.out.println(itemShelf.get(i).toString());}
+        boolean addFlag = true;
+        while (addFlag) {
             System.out.println("Please select an item ID number to add it to your cart.");
             input = stdin.nextLine();
             cart.add(itemShelf.get(Integer.parseInt(input) - 1));
-        System.out.println("You've entered" + input);
+            System.out.println("You've entered " + input);
+            System.out.println("cart is " + cart);
+            addFlag = false;
+            System.out.println("Would you like to add another item?");
+            input = stdin.nextLine();
+            if (input.equalsIgnoreCase("yes")) {
+                addFlag = true;
+            } else if (input.equalsIgnoreCase("no")) {
+                System.out.println("Your cart includes " + cart);
+            }
+        }
+        boolean deleteFlag = true;
+        while (deleteFlag){
+            System.out.println("Would you like to remove any items from your cart?");
+            input = stdin.nextLine();
+            if(input.equalsIgnoreCase("yes")) {
+                System.out.println("Select an item to remove. \n" + cart);
+                input = stdin.nextLine();
+                cart.remove(itemShelf.get(Integer.parseInt(input) - 1));
+                System.out.println("cart now contains" + cart);
+            }else if(input.equalsIgnoreCase("no")){
+                System.out.println("Please pay at the register.");
+            }
 
-            boolean deleteFlag = true;
-            //   while(deleteFlag == true){
-            //delete logic
+        }
+
 
     }
 }
