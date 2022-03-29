@@ -26,35 +26,45 @@ public class ShoppingCart {
         itemShelf.add(appleWatch);
         itemShelf.add(gtx3070);
 
+
+
         for (int i = 0; i < itemShelf.size(); i++) {
             System.out.println(itemShelf.get(i).toString());}
+
+        for (int i = 0; i < cart.size(); i++) {
+            System.out.println(cart.get(i).toString());}
+
+
+
         boolean addFlag = true;
+
         while (addFlag) {
             System.out.println("Please select an item ID number to add it to your cart.");
             input = stdin.nextLine();
             cart.add(itemShelf.get(Integer.parseInt(input) - 1));
             System.out.println("You've entered " + input);
-            System.out.println("cart is " + cart);
-            addFlag = false;
-            System.out.println("Would you like to add another item?");
+            System.out.println("Your cart currently contains.. \n " + cart.size() + "\nWould you like to add another item?");
+           // System.out.println("Would you like to add another item?");
             input = stdin.nextLine();
             if (input.equalsIgnoreCase("yes")) {
                 addFlag = true;
             } else if (input.equalsIgnoreCase("no")) {
-                System.out.println("Your cart includes " + cart);
+                addFlag = false;
             }
         }
         boolean deleteFlag = true;
+
         while (deleteFlag){
-            System.out.println("Would you like to remove any items from your cart?");
+            System.out.println("Your cart includes.. \n " + cart.size() + "\nWould you like to remove any items from your cart?");
             input = stdin.nextLine();
             if(input.equalsIgnoreCase("yes")) {
-                System.out.println("Select an item to remove. \n" + cart);
+                System.out.println("Select an item to remove. \n" + cart.size());
                 input = stdin.nextLine();
                 cart.remove(itemShelf.get(Integer.parseInt(input) - 1));
-                System.out.println("cart now contains" + cart);
+                //System.out.println("cart now contains" + cart);
             }else if(input.equalsIgnoreCase("no")){
                 System.out.println("Please pay at the register.");
+                deleteFlag = false;
             }
 
         }
